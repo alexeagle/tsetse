@@ -1,17 +1,15 @@
 import * as match from './match';
-import {allOf, not, Matcher} from './matchers';
+import {not, lastStatement, kindIs, anyOf, Matcher} from './matchers';
 import * as ts from 'typescript';
 
 type Clause = ts.CaseClause | ts.DefaultClause;
 
 const last = (l: any[]) => l[l.length - 1];
 
-const lastClause = (c: Clause) =>
-    c === last((c.parent as ts.CaseBlock).clauses);
-const fallsThrough = (c: Clause) =>
-    c.statements[c.statements.length - 1].kind != ts.SyntaxKind.BreakStatement;
-
-export const matcher: Matcher<Clause> = allOf(fallsThrough, not(lastClause));
+const lastClause = (c: Clause) => c === last((c.parent as ts.CaseBlock).clauses);
+const hasBreakOrReturn = lastStatement(
+    anyOf(kindIs(ts.SyntaxKind.BreakStatement), kindIs(ts.SyntaxKind.ReturnStatement)));
+export const matcher: Matcher<Clause> = not(anyOf(lastClause, hasBreakOrReturn));
 
 export class FallThrough {
   match(t: Clause): match.Match {

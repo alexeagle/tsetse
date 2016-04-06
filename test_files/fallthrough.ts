@@ -17,7 +17,21 @@ switch(a) {
   case 3:
     console.log("3");
     break;
+// FIXME(alexeagle): handle this one too
+//  case 4: {
+//    console.log("4");
+//    break;
+//  }
   // It's okay in the last clause
   default:
     console.log("default");
+}
+
+let p = () => {
+  switch(1) {
+    case 1:
+      return true;
+    case 2:
+      return false;
+  }
 }
