@@ -23,7 +23,7 @@ for (let file of readdirSync('test_files')) {
                 lineno++;
               })
           .on('close', () => {
-            let {diagnostics} = checkOneFile(path);
+            let diagnostics = checkOneFile(path);
             for (let d of diagnostics) {
               let line = ts.getLineAndCharacterOfPosition(d.file, d.start).line + 1;
               actual.push(line)

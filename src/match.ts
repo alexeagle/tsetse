@@ -14,16 +14,19 @@ export interface Replacement {
   end: number;
   replaceWith: string;
 }
-export interface Fix {
-  replacements: Replacement[];
-  addImports?: {symbol: string, module: string};
-  removeImports?: {symbol: string, module: string};
+export class Fix {
+  replacements: Replacement[] = [];
+  constructor(private nodeStart: number, private nodeEnd: number) {}
+  appendText(text: string): this {
+    this.replacements.push({start: this.nodeEnd, end: this.nodeEnd, replaceWith: text});
+    return this;
+  }
 }
 
 export class MatchBuilder {
   private diagnostic: ts.Diagnostic;
   private fixes: Fix[] = [];
-  constructor(node: ts.Node) {
+  constructor(private node: ts.Node) {
     this.diagnostic = {
       messageText: '',
       category: 1,
@@ -34,6 +37,9 @@ export class MatchBuilder {
     };
   }
   public set diagnosticMsg(msg: string) { this.diagnostic.messageText = msg; }
-  public addFix(fix: Fix) { this.fixes.push(fix); }
+  public addFix(fix: Fix = new Fix(this.node.getStart(), this.node.getEnd())) {
+    this.fixes.push(fix);
+    return fix;
+  }
   public build(): Match { return {diagnostic: this.diagnostic, fixes: this.fixes}; }
 }
