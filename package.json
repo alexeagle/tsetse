@@ -1,0 +1,27 @@
+{
+  "name": "tsoops",
+  "version": "0.0.1",
+  "description": "Static analysis and refactoring driver for TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "format": "clang-format -style file -i src/*.ts test/*.ts",
+    "tsc": "tsc",
+    "tsc:w": "tsc --watch",
+    "test": "tsc && mocha built/test/*.js",
+    "typings": "typings install"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "Alex Eagle <alexeagle@google.com> (https://angular.io/)",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^1.8.9"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "clang-format": "^1.0.36",
+    "mocha": "^2.4.5",
+    "typings": "^0.7.9"
+  }
+}

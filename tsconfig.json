@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+
+        "sourceMap": true,
+        "mapRoot": "built",
+        "outDir": "built",
+
+        // Static analysis options
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true
+    },
+    "exclude": [
+        "node_modules",
+        "test_files",
+        "typings/browser",
+        "typings/browser.d.ts"
+    ]
+}
