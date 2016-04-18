@@ -14,6 +14,7 @@ switch(a) {
 }
 
 switch(a) {
+  case 2:
   case 3:
     console.log("3");
     break;
@@ -33,5 +34,13 @@ let p = () => {
       return true;
     case 2:
       return false;
+    // FIXME: handle this case
+    //case 3:
+    //  if (1 === 2) {
+    //    return true;
+    //  } else {
+    //    return false;
+    //  }
+    case 4:
   }
 }

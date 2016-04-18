@@ -51,7 +51,13 @@ export function checkOneFile(
   return matches.map(m => m.diagnostic);
 }
 
-// CLI entry point
-if (require.main === module) {
-  // TODO: mimic tsc
+export class Extension {
+  check(sf: ts.SourceFile): {errors: ts.Diagnostic[], data: Object} {
+    visit(sf);
+    const errors = matches.map(m => m.diagnostic);
+    // TODO: return suggested replacements as data
+    return {errors, data: null};
+  }
 }
+const extension = new Extension();
+export default extension;

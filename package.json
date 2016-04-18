@@ -1,8 +1,8 @@
 {
-  "name": "tsoops",
+  "name": "tsetse",
   "version": "0.0.1",
   "description": "Static analysis and refactoring driver for TypeScript",
-  "main": "index.js",
+  "main": "built/src/main.js",
   "scripts": {
     "format": "clang-format -style file -i src/*.ts test/*.ts",
     "tsc": "tsc",
@@ -15,13 +15,14 @@
   ],
   "author": "Alex Eagle <alexeagle@google.com> (https://angular.io/)",
   "license": "MIT",
-  "dependencies": {
-    "typescript": "^1.8.9"
+  "peerDependencies": {
+    "typescript": "^1.8 || ^1.9.0-dev"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "clang-format": "^1.0.36",
     "mocha": "^2.4.5",
+    "typescript": "^1.9.0-dev",
     "typings": "^0.7.9"
   }
 }

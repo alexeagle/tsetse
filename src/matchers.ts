@@ -32,7 +32,7 @@ export function not<T extends ts.Node>(matcher: Matcher<T>): Matcher<T> {
 }
 
 export function kindIs<T extends ts.Node>(kind: ts.SyntaxKind): Matcher<T> {
-  return (t: T) => t.kind === kind;
+  return (t: T) => t && t.kind === kind;
 }
 
 export function lastStatement<T extends ts.Node&{statements: ts.NodeArray<ts.Statement>}>(
